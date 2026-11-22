@@ -1,0 +1,79 @@
+#!/usr/bin/env node
+// Builds documents/html from documents/md with zero dependencies.  Run: node documents/build.mjs  (after `npm run demo` and `npm run proof`)
+import fs from 'node:fs';
+import path from 'node:path';
+const HERE=import.meta.dirname,PROJECT=path.resolve(HERE,'..'),MD=path.join(HERE,'md'),OUT=path.join(HERE,'html');
+const SITE='https://shahvatsalofficial.github.io/contractsutra-ai/',REPO='https://github.com/shahvatsalofficial/contractsutra-ai';
+const env=JSON.parse(fs.readFileSync(path.join(PROJECT,'docs/proof/environment.json'),'utf8'));
+const V={VERSION:env.version,TESTS:env.suite.tests,PASS:env.suite.pass,FAIL:env.suite.fail,SKIPPED:env.suite.skipped,GOLD:env.goldPassed,GOLDN:env.goldCases,FUZZ:env.fuzzCases,FUZZFAIL:env.fuzzFailures,NODE:env.node,PLATFORM:env.platform,DATE:env.recordedAt.slice(0,10)};
+const sub=t=>t.replace(/\{\{(\w+)\}\}/g,(m,k)=>k in V?String(V[k]):m);
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const slug=s=>s.toLowerCase().replace(/<[^>]+>/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+function inline(s){const codes=[];s=s.replace(/`([^`]+)`/g,(m,c)=>{codes.push(c);return '\u0000'+(codes.length-1)+'\u0000';});s=esc(s);
+ s=s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(m,t,u)=>{u=u.replace(/\.md(#|$)/,'.html$1');const ext=/^https?:/.test(u);return `<a href="${u}"${ext?' rel="noopener"':''}>${t}</a>`;});
+ s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/(^|[\s(])\*([^*\s][^*]*)\*/g,'$1<em>$2</em>');
+ return s.replace(/\u0000(\d+)\u0000/g,(m,i)=>'<code>'+esc(codes[i])+'</code>');}
+function render(md){const lines=md.split('\n'),out=[],toc=[];let i=0;
+ while(i<lines.length){const l=lines[i];
+  if(l.startsWith('```')){const lang=l.slice(3).trim(),buf=[];i++;while(i<lines.length&&!lines[i].startsWith('```'))buf.push(lines[i++]);i++;out.push(`<pre><code${lang?` class="lang-${esc(lang)}"`:''}>${esc(buf.join('\n'))}</code></pre>`);continue;}
+  let m=l.match(/^(#{1,4}) (.*)/);if(m){const n=m[1].length,id=slug(m[2]);if(n===2)toc.push([id,m[2]]);out.push(`<h${n} id="${id}">${inline(m[2])}</h${n}>`);i++;continue;}
+  if(l.startsWith('|')&&lines[i+1]?.match(/^\|[\s:|-]+\|$/)){const rows=[];while(i<lines.length&&lines[i].startsWith('|'))rows.push(lines[i++]);const cells=r=>r.replace(/^\||\|$/g,'').split(/(?<!\\)\|/).map(c=>c.trim().replace(/\\\|/g,'|'));const head=cells(rows[0]);
+   out.push(`<div class="tablewrap"><table><thead><tr>${head.map(h=>`<th scope="col">${inline(h)}</th>`).join('')}</tr></thead><tbody>${rows.slice(2).map(r=>`<tr>${cells(r).map(c=>`<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);continue;}
+  if(/^[-*] /.test(l)){const items=[];while(i<lines.length&&/^[-*] /.test(lines[i]))items.push(lines[i++].slice(2));out.push('<ul>'+items.map(x=>`<li>${inline(x)}</li>`).join('')+'</ul>');continue;}
+  if(/^\d+\. /.test(l)){const items=[];while(i<lines.length&&/^\d+\. /.test(lines[i]))items.push(lines[i++].replace(/^\d+\. /,''));out.push('<ol>'+items.map(x=>`<li>${inline(x)}</li>`).join('')+'</ol>');continue;}
+  if(l.startsWith('> ')){const b=[];while(i<lines.length&&lines[i].startsWith('> '))b.push(lines[i++].slice(2));out.push(`<blockquote>${inline(b.join(' '))}</blockquote>`);continue;}
+  if(!l.trim()){i++;continue;}
+  const p=[];while(i<lines.length&&lines[i].trim()&&!/^(#{1,4} |```|\||[-*] |\d+\. |> )/.test(lines[i]))p.push(lines[i++]);out.push(`<p>${inline(p.join(' '))}</p>`);}
+ return {html:out.join('\n'),toc};}
+const CSS=`:root{--bg:#f7f9fc;--card:#fff;--ink:#12202f;--mute:#53647a;--line:#d8e1ec;--accent:#1d4ed8;--accent2:#0f766e;--code:#eef2f7;--ok:#0b6b3a}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1520;--card:#142030;--ink:#e7eef7;--mute:#9bb0c8;--line:#27374b;--accent:#8ab4ff;--accent2:#5eead4;--code:#0a111a;--ok:#86efac}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--accent)}a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:8px 14px;z-index:9}.skip:focus{left:8px;top:8px}
+header.top{background:linear-gradient(120deg,#0f172a,#1e3a8a 60%,#0f766e);color:#fff;padding:14px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header.top a{color:#fff;text-decoration:none;font-weight:700}header.top .sp{flex:1}header.top .pill{background:rgba(255,255,255,.16);padding:3px 12px;border-radius:99px;font-size:.85rem}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);max-width:1240px;margin:0 auto;gap:28px;padding:20px}
+nav.side{position:sticky;top:12px;align-self:start;max-height:calc(100vh - 24px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+nav.side a{display:block;padding:6px 10px;border-radius:8px;text-decoration:none;color:var(--ink);font-size:.93rem}nav.side a:hover{background:var(--code)}nav.side a[aria-current=page]{background:var(--accent);color:#fff;font-weight:600}
+nav.side h2{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin:10px 10px 4px}
+article{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 34px;min-width:0}
+article h1{font-size:2rem;margin-top:0}article h2{margin-top:2.2rem;padding-bottom:.3rem;border-bottom:1px solid var(--line)}article h3{margin-top:1.6rem}
+pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto;font-size:.88rem}code{font:.9em ui-monospace,Consolas,monospace;background:var(--code);padding:1px 6px;border-radius:5px}pre code{background:none;padding:0}
+.tablewrap{overflow-x:auto;margin:1rem 0}table{border-collapse:collapse;width:100%;font-size:.94rem}th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}th{background:var(--code)}
+blockquote{margin:1rem 0;padding:.6rem 1rem;border-left:4px solid var(--accent2);background:var(--code);border-radius:0 8px 8px 0}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:2rem;flex-wrap:wrap}.pager a{padding:8px 14px;border:1px solid var(--line);border-radius:10px;text-decoration:none}
+footer{max-width:1240px;margin:0 auto;padding:10px 20px 40px;color:var(--mute);font-size:.88rem}
+.hero{padding:34px;border-radius:16px;background:linear-gradient(120deg,#0f172a,#1e3a8a 60%,#0f766e);color:#fff;margin-bottom:20px}.hero h1{margin:0 0 8px;font-size:2.3rem;color:#fff}.hero p{max-width:60ch;font-size:1.1rem}.hero code{background:rgba(255,255,255,.18);color:#fff;white-space:normal;word-break:break-word}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;text-decoration:none;color:var(--ink)}.card b{display:block;font-size:1.9rem;color:var(--accent)}.card span{color:var(--mute);font-size:.92rem}a.card:hover{border-color:var(--accent)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}nav.side{position:static;max-height:none}article{padding:20px}}
+@media print{header.top,nav.side,.pager,footer{display:none}.layout{display:block}article{border:0}}`;
+const files=fs.readdirSync(MD).filter(f=>f.endsWith('.md')).sort();
+const docs=files.map(f=>{const raw=sub(fs.readFileSync(path.join(MD,f),'utf8'));const title=raw.match(/^# (.*)/)[1];return {f,out:f.replace('.md','.html'),title,raw};});
+fs.rmSync(OUT,{recursive:true,force:true});fs.mkdirSync(OUT,{recursive:true});
+const nav=cur=>`<nav class="side" aria-label="Documentation"><h2>Documentation</h2><a href="index.html"${cur==='index.html'?' aria-current="page"':''}>Overview</a>${docs.map(d=>`<a href="${d.out}"${d.out===cur?' aria-current="page"':''}>${esc(d.title)}</a>`).join('')}<h2>Evidence</h2><a href="samples/index.html"${cur==='samples'?' aria-current="page"':''}>Sample reports and results</a><h2>Project</h2><a href="${REPO}" rel="noopener">GitHub repository</a><a href="https://www.npmjs.com/package/contractsutra-ai" rel="noopener">npm package</a><a href="llms.txt">llms.txt</a></nav>`;
+const LD=(title,desc,url)=>`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@graph':[{'@type':'SoftwareApplication',name:'ContractSutra AI',applicationCategory:'DeveloperApplication',operatingSystem:'Windows, macOS, Linux (Node.js 22+)',softwareVersion:V.VERSION,license:'https://www.apache.org/licenses/LICENSE-2.0',url:SITE,codeRepository:REPO,author:{'@type':'Person',name:'Vatsal Shah',url:'https://github.com/shahvatsalofficial'},offers:{'@type':'Offer',price:'0',priceCurrency:'USD'},description:'Local-first OpenAPI breaking-change detector with independent audit reports.'},{'@type':'TechArticle',headline:title,description:desc,url,author:{'@type':'Person',name:'Vatsal Shah'},dateModified:V.DATE}]})}</script>`;
+function shell({file,title,desc,body,cur,pager=''}){const url=SITE+(file==='index.html'?'':file);return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} | ContractSutra AI</title><meta name="description" content="${esc(desc)}"><link rel="canonical" href="${url}"><meta name="color-scheme" content="light dark"><meta property="og:type" content="article"><meta property="og:title" content="${esc(title)} | ContractSutra AI"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}"><meta name="twitter:card" content="summary"><meta name="author" content="Vatsal Shah"><meta name="keywords" content="OpenAPI, breaking changes, API compatibility, openapi diff, SARIF, CI gate, audit report, consumer impact"><style>${CSS}</style>${LD(title,desc,url)}</head><body><a class="skip" href="#main">Skip to content</a><header class="top"><a href="index.html">ContractSutra AI</a><span class="pill">v${V.VERSION}</span><span class="sp"></span><a href="${REPO}" rel="noopener">GitHub</a></header><div class="layout">${nav(cur)}<article id="main">${body}${pager}</article></div><footer>Apache-2.0 &middot; Created by Vatsal Shah &middot; Static analysis only: not proof of runtime compatibility, not legal advice, not a certification. Generated ${V.DATE} from ${V.TESTS} tests.</footer></body></html>`;}
+docs.forEach((d,i)=>{const {html}=render(d.raw);const prev=docs[i-1],next=docs[i+1];
+ const pager=`<div class="pager">${prev?`<a href="${prev.out}">&larr; ${esc(prev.title)}</a>`:'<span></span>'}${next?`<a href="${next.out}">${esc(next.title)} &rarr;</a>`:'<span></span>'}</div>`;
+ const desc=d.raw.split('\n').find(l=>l&&!l.startsWith('#')&&!l.startsWith('|')&&!l.startsWith('`')&&!l.startsWith('-'))?.replace(/[*`]/g,'').slice(0,200)??d.title;
+ fs.writeFileSync(path.join(OUT,d.out),shell({file:d.out,title:d.title,desc,body:html,cur:d.out,pager}));});
+// index
+const cards=[[V.PASS+'/'+V.TESTS,'automated tests passing'],[V.GOLD+'/'+V.GOLDN,'gold-corpus scenarios agree'],[String(V.FUZZ),'fuzz cases, '+V.FUZZFAIL+' failures'],['0','runtime dependencies']].map(([a,b])=>`<div class="card"><b>${a}</b><span>${b}</span></div>`).join('');
+const idx=`<div class="hero"><h1>ContractSutra AI</h1><p>Know if your OpenAPI change will break consumers before you ship. Offline, deterministic, and honest about what it cannot prove.</p><p><code>npx contractsutra-ai compare --before v1.json --after v2.json --out reports</code></p></div><div class="cards">${cards}</div><h2>Read the documents</h2><div class="cards">${docs.map(d=>`<a class="card" href="${d.out}"><b style="font-size:1.1rem">${esc(d.title)}</b><span>${esc(d.raw.split('\n').find(l=>l&&!l.startsWith('#')&&!l.startsWith('|')&&!l.startsWith('`')&&!l.startsWith('-')&&!l.startsWith('>')).replace(/[*`]/g,'').slice(0,110))}</span></a>`).join('')}<a class="card" href="samples/index.html"><b style="font-size:1.1rem">Sample reports and results</b><span>Real generated Markdown, HTML, SARIF, JSON and audit files.</span></a></div><h2>Limits, stated up front</h2><ul><li>Compares specifications, not running services.</li><li>JSON OpenAPI only; no YAML, GraphQL, AsyncAPI or protobuf yet.</li><li>Consumer mapping is self-declared; generated test cases are <code>NOT_RUN</code> templates.</li><li>The audit is automated self-verification, not a certification.</li></ul>`;
+fs.writeFileSync(path.join(OUT,'index.html'),shell({file:'index.html',title:'Offline OpenAPI breaking-change detector',desc:'ContractSutra AI compares OpenAPI specs with direction-aware rules, gates CI, and writes sealed Markdown, HTML, JSON and SARIF audit evidence. Zero dependencies, fully offline.',body:idx,cur:'index.html'}));
+// samples
+const SAMP=path.join(OUT,'samples');fs.mkdirSync(SAMP,{recursive:true});const copied=[];
+const cp=(src,name)=>{if(fs.existsSync(src)){fs.copyFileSync(src,path.join(SAMP,name));copied.push(name);}};
+const demo=path.join(PROJECT,'examples/reports/demo');
+for(const f of ['compatibility.md','compatibility.html','contract-diff.json','contract-diff.sarif.json','release-note-draft.md','generated-cases.json','affected-consumers.json','audit.jsonl'])cp(path.join(demo,f),f);
+for(const f of ['audit-report.md','audit-report.html','audit-report.json'])cp(path.join(demo,'audit',f),f);
+for(const f of ['TEST-RESULTS.md','environment.json','gold-corpus.json','fuzz-results.json','benchmark.json'])cp(path.join(PROJECT,'docs/proof',f),f);
+cp(path.join(PROJECT,'fixtures/openapi/before.json'),'input-before.json');cp(path.join(PROJECT,'fixtures/openapi/after.json'),'input-after.json');
+const desc={'compatibility.html':'Compatibility report (HTML)','compatibility.md':'Compatibility report (Markdown)','audit-report.html':'Independent audit report (HTML)','audit-report.md':'Independent audit report (Markdown)','audit-report.json':'Sealed audit report (JSON)','contract-diff.sarif.json':'SARIF 2.1.0 for GitHub code scanning','contract-diff.json':'Findings (JSON)','TEST-RESULTS.md':'Full test, gold corpus, fuzz and benchmark results','environment.json':'Machine-readable run record','audit.jsonl':'Hash-chained audit log','input-before.json':'Input: API v1','input-after.json':'Input: API v2'};
+const list=`<h1>Sample reports and results</h1><p>Real output generated by ContractSutra AI v${V.VERSION} from the bundled fixtures, and the proof run. Nothing here is hand-edited. Verify with <code>contractsutra audit --dir &lt;folder&gt;</code>.</p><div class="tablewrap"><table><thead><tr><th scope="col">File</th><th scope="col">What it is</th></tr></thead><tbody>${copied.map(n=>`<tr><td><a href="${n}">${esc(n)}</a></td><td>${esc(desc[n]??'')}</td></tr>`).join('')}</tbody></table></div>`;
+fs.writeFileSync(path.join(SAMP,'index.html'),shell({file:'samples/index.html',title:'Sample reports and results',desc:'Real generated compatibility, SARIF and audit reports plus test, gold corpus, fuzz and benchmark results.',body:list.replace(/href="([^"]+)"/g,(m,h)=>/^(https?:|#)/.test(h)?m:'href="'+h+'"'),cur:'samples'}).replace(/(href="|canonical" href=")(?!https?:|#|samples\/)(index\.html|\d\d-[^"]+\.html|llms\.txt)/g,'$1../$2'));
+fs.copyFileSync(path.join(PROJECT,'llms.txt'),path.join(OUT,'llms.txt'));fs.writeFileSync(path.join(OUT,'.nojekyll'),'');
+const urls=['',...docs.map(d=>d.out),'samples/index.html'];
+fs.writeFileSync(path.join(OUT,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u=>`<url><loc>${SITE}${u}</loc><lastmod>${V.DATE}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+fs.writeFileSync(path.join(OUT,'robots.txt'),`User-agent: *\nAllow: /\n\nSitemap: ${SITE}sitemap.xml\n`);
+console.log(JSON.stringify({pages:docs.length+2,samples:copied.length,out:OUT}));

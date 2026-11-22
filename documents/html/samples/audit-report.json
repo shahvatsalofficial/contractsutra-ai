@@ -1,0 +1,96 @@
+{
+  "schema": "contractsutra.audit-report/1",
+  "tool": "contractsutra-ai@0.2.0",
+  "directory": "demo",
+  "checks": [
+    {
+      "id": "AUD-01",
+      "title": "All report files present",
+      "status": "PASS",
+      "detail": "7 report files and audit.jsonl found"
+    },
+    {
+      "id": "AUD-02",
+      "title": "contract-diff.json parses",
+      "status": "PASS",
+      "detail": "Parsed"
+    },
+    {
+      "id": "AUD-03",
+      "title": "Audit hash chain intact",
+      "status": "PASS",
+      "detail": "2 event(s), head 1ed3e7988f39"
+    },
+    {
+      "id": "AUD-04",
+      "title": "Report bytes match hashes sealed in the audit log",
+      "status": "PASS",
+      "detail": "7 files verified"
+    },
+    {
+      "id": "AUD-05",
+      "title": "Input spec hashes match audit event",
+      "status": "PASS",
+      "detail": "before 0c5d70b0865a after 539d74151a03"
+    },
+    {
+      "id": "AUD-06",
+      "title": "Severity counts recompute",
+      "status": "PASS",
+      "detail": "{\"breaking\":2,\"risky\":0,\"additive\":2,\"info\":1}"
+    },
+    {
+      "id": "AUD-07",
+      "title": "Finding IDs recompute from content",
+      "status": "PASS",
+      "detail": "5 ID(s) verified"
+    },
+    {
+      "id": "AUD-08",
+      "title": "No claim inflation (no finding claims verified consumer impact)",
+      "status": "PASS",
+      "detail": "All findings static-only"
+    },
+    {
+      "id": "AUD-09",
+      "title": "Disclaimer present",
+      "status": "PASS",
+      "detail": "JSON and Markdown carry the static-analysis disclaimer"
+    },
+    {
+      "id": "AUD-10",
+      "title": "Markdown and HTML list every finding",
+      "status": "PASS",
+      "detail": "md missing 0, html missing 0"
+    },
+    {
+      "id": "AUD-11",
+      "title": "Generated cases are all NOT_RUN",
+      "status": "PASS",
+      "detail": "2 case(s), 0 claim execution"
+    },
+    {
+      "id": "AUD-12",
+      "title": "HTML report is inert (CSP, no scripts)",
+      "status": "PASS",
+      "detail": "CSP meta present, zero script tags"
+    }
+  ],
+  "passed": 12,
+  "failed": 0,
+  "verdict": "PASS",
+  "assurance": "LOCAL_STARTER_VERIFIED",
+  "counts": {
+    "breaking": 2,
+    "risky": 0,
+    "additive": 2,
+    "info": 1
+  },
+  "limits": [
+    "Hash chain proves tamper-evidence, not authorship; it is not a signature.",
+    "Static spec comparison only: no consumer traffic, Pact verification or runtime test was executed.",
+    "Unsupported OpenAPI constructs are reported as UNRESOLVED_SEMANTICS, not as compatible.",
+    "This audit is automated self-verification, not an independent human audit or certification."
+  ],
+  "seal": "6f37599111775fe2b0388d84998ec8fdf826fd0f9a5d310a2af08478b1c4eeba"
+}

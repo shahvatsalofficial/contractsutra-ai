@@ -1,0 +1,44 @@
+{
+  "source": {
+    "sourceHash": "c43d8fbe4a136f8dce20f570e79713af8c9482f2aea2675237564509092211cf",
+    "entries": 2,
+    "confidence": "USER_DECLARED_UNVERIFIED"
+  },
+  "findings": [
+    {
+      "id": "CS-5D4DFCCBC0E1",
+      "consumerImpact": "DECLARED_CONSUMERS_MATCHED_UNVERIFIED",
+      "affectedConsumers": [
+        "admin-console"
+      ]
+    },
+    {
+      "id": "CS-CF9D95D774DE",
+      "consumerImpact": "DECLARED_CONSUMERS_MATCHED_UNVERIFIED",
+      "affectedConsumers": [
+        "admin-console"
+      ]
+    },
+    {
+      "id": "CS-64C332DBE59C",
+      "consumerImpact": "DECLARED_CONSUMERS_MATCHED_UNVERIFIED",
+      "affectedConsumers": [
+        "admin-console"
+      ]
+    },
+    {
+      "id": "CS-9E1FDE917AF2",
+      "consumerImpact": "DECLARED_CONSUMERS_MATCHED_UNVERIFIED",
+      "affectedConsumers": [
+        "admin-console"
+      ]
+    },
+    {
+      "id": "CS-888AFB689BE7",
+      "consumerImpact": "DECLARED_CONSUMERS_MATCHED_UNVERIFIED",
+      "affectedConsumers": [
+        "admin-console"
+      ]
+    }
+  ]
+}

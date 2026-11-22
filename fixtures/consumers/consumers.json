@@ -1,0 +1,1 @@
+{"consumers":[{"name":"admin-console","operations":["POST /invitations"]},{"name":"mobile-client","operations":["GET /profile"]}]}

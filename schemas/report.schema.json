@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "engine",
+    "beforeHash",
+    "afterHash",
+    "findings",
+    "counts",
+    "unknown",
+    "disclaimer"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "engine": {
+      "type": "string"
+    },
+    "beforeHash": {
+      "type": "string"
+    },
+    "afterHash": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "code",
+          "pointer",
+          "description",
+          "verification",
+          "consumerImpact"
+        ]
+      }
+    },
+    "counts": {
+      "type": "object"
+    },
+    "unknown": {
+      "type": "array"
+    },
+    "disclaimer": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

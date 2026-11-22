@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": null,
+  "cases": [
+    {
+      "operation": "POST /invitations",
+      "status": "201",
+      "mediaType": "application/json",
+      "schemaPointer": "#/paths/~1invitations/post/responses/201/content/application~1json/schema",
+      "execution": "NOT_RUN",
+      "scope": "LOCAL_MOCK_CASE_TEMPLATE",
+      "id": "CASE-f6615c7bd4",
+      "kind": "positive",
+      "sample": {
+        "email": "example",
+        "id": "example",
+        "roleName": "example"
+      },
+      "expect": "Matches declared schema; not validated against a running service"
+    },
+    {
+      "operation": "POST /invitations",
+      "status": "201",
+      "mediaType": "application/json",
+      "schemaPointer": "#/paths/~1invitations/post/responses/201/content/application~1json/schema",
+      "execution": "NOT_RUN",
+      "scope": "LOCAL_MOCK_CASE_TEMPLATE",
+      "id": "CASE-fedaeab51f",
+      "kind": "negative",
+      "sample": {
+        "id": "example",
+        "roleName": "example"
+      },
+      "expect": "Missing required field email should fail validation"
+    }
+  ],
+  "unknown": [],
+  "disclaimer": "Generated examples are NOT executed tests; do not infer live service behavior."
+}

@@ -1,0 +1,27 @@
+{
+  "network": {
+    "default": "deny",
+    "remoteProbing": false
+  },
+  "filesystem": {
+    "input": "read_only",
+    "output": "explicit_user_path",
+    "maxInputBytes": 4194304
+  },
+  "secrets": {
+    "redact": true,
+    "printTokens": false
+  },
+  "ci": {
+    "failOn": "risky"
+  },
+  "agentTools": {
+    "autoInstallGlobal": false,
+    "autoApproveRelease": false,
+    "autoCreatePR": false
+  },
+  "evidence": {
+    "missingMeans": "NOT_RUN",
+    "consumerManifest": "DECLARED_UNVERIFIED"
+  }
+}

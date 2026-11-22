@@ -1,0 +1,25 @@
+{
+  "node": "v24.15.0",
+  "platform": "win32 x64",
+  "note": "Single process, synthetic specs, wall-clock of diffContracts only",
+  "runs": [
+    {
+      "operations": 100,
+      "specBytes": 25654,
+      "findings": 1,
+      "ms": 7
+    },
+    {
+      "operations": 500,
+      "specBytes": 128454,
+      "findings": 1,
+      "ms": 38
+    },
+    {
+      "operations": 1000,
+      "specBytes": 256954,
+      "findings": 1,
+      "ms": 87
+    }
+  ]
+}

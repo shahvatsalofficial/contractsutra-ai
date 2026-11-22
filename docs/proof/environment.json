@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "recordedAt": "2026-11-22T19:08:21.946Z",
+  "node": "v24.15.0",
+  "platform": "win32 x64",
+  "cpus": 14,
+  "fixtureHashes": {
+    "before": "0c5d70b0865a224f589ca27951bf32d3f7b0cfdded0b644cbd1495b3e5ce2bb6",
+    "after": "539d74151a038ae6170cf6e11d7e4dd137a0e2bf6002c1f24a0f0acd7c8c8e01"
+  },
+  "suite": {
+    "tests": 123,
+    "pass": 123,
+    "fail": 0,
+    "skipped": 0,
+    "exit": 0
+  },
+  "goldPassed": 20,
+  "goldCases": 20,
+  "fuzzCases": 2000,
+  "fuzzFailures": 0
+}

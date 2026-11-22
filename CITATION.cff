@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use ContractSutra AI, please cite it as below."
+title: "ContractSutra AI"
+version: 0.2.0
+date-released: 2026-11-23
+license: Apache-2.0
+repository-code: "https://github.com/shahvatsalofficial/contractsutra-ai"
+url: "https://shahvatsalofficial.github.io/contractsutra-ai/"
+authors:
+  - name: "Vatsal Shah"
+    website: "https://github.com/shahvatsalofficial"
+keywords: [openapi, breaking-changes, api-compatibility, sarif, audit]
+abstract: "Local-first OpenAPI breaking-change detector with direction-aware rules, consumer impact mapping, CI gate and independent audit reports."

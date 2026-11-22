@@ -1,0 +1,106 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "ContractSutra AI",
+          "version": "0.2.0",
+          "informationUri": "https://github.com/shahvatsalofficial/contractsutra-ai",
+          "rules": [
+            {
+              "id": "FIELD_ADDED",
+              "shortDescription": {
+                "text": "FIELD_ADDED"
+              }
+            },
+            {
+              "id": "FIELD_REMOVED",
+              "shortDescription": {
+                "text": "FIELD_REMOVED"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "FIELD_ADDED",
+          "level": "error",
+          "message": {
+            "text": "Schema field added: organizationId (required) [#/paths/~1invitations/post/requestBody/content/application~1json/schema/properties/organizationId]"
+          },
+          "partialFingerprints": {
+            "contractsutraId": "CS-5D4DFCCBC0E1"
+          },
+          "properties": {
+            "pointer": "#/paths/~1invitations/post/requestBody/content/application~1json/schema/properties/organizationId",
+            "severity": "breaking",
+            "verification": "OBSERVED_IN_SPEC"
+          }
+        },
+        {
+          "ruleId": "FIELD_ADDED",
+          "level": "note",
+          "message": {
+            "text": "Schema field added: source (optional) [#/paths/~1invitations/post/requestBody/content/application~1json/schema/properties/source]"
+          },
+          "partialFingerprints": {
+            "contractsutraId": "CS-CF9D95D774DE"
+          },
+          "properties": {
+            "pointer": "#/paths/~1invitations/post/requestBody/content/application~1json/schema/properties/source",
+            "severity": "info",
+            "verification": "OBSERVED_IN_SPEC"
+          }
+        },
+        {
+          "ruleId": "FIELD_REMOVED",
+          "level": "error",
+          "message": {
+            "text": "Schema field removed: role [#/paths/~1invitations/post/responses/201/content/application~1json/schema/properties/role]"
+          },
+          "partialFingerprints": {
+            "contractsutraId": "CS-64C332DBE59C"
+          },
+          "properties": {
+            "pointer": "#/paths/~1invitations/post/responses/201/content/application~1json/schema/properties/role",
+            "severity": "breaking",
+            "verification": "OBSERVED_IN_SPEC"
+          }
+        },
+        {
+          "ruleId": "FIELD_ADDED",
+          "level": "note",
+          "message": {
+            "text": "Schema field added: roleName (required) [#/paths/~1invitations/post/responses/201/content/application~1json/schema/properties/roleName]"
+          },
+          "partialFingerprints": {
+            "contractsutraId": "CS-9E1FDE917AF2"
+          },
+          "properties": {
+            "pointer": "#/paths/~1invitations/post/responses/201/content/application~1json/schema/properties/roleName",
+            "severity": "additive",
+            "verification": "OBSERVED_IN_SPEC"
+          }
+        },
+        {
+          "ruleId": "FIELD_ADDED",
+          "level": "note",
+          "message": {
+            "text": "Schema field added: source (optional) [#/paths/~1invitations/post/responses/201/content/application~1json/schema/properties/source]"
+          },
+          "partialFingerprints": {
+            "contractsutraId": "CS-888AFB689BE7"
+          },
+          "properties": {
+            "pointer": "#/paths/~1invitations/post/responses/201/content/application~1json/schema/properties/source",
+            "severity": "additive",
+            "verification": "OBSERVED_IN_SPEC"
+          }
+        }
+      ]
+    }
+  ]
+}

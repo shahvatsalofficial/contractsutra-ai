@@ -1,0 +1,31 @@
+# ContractSutra AI
+
+> Open-source, local-first OpenAPI breaking-change detector (Node.js 22+, zero runtime dependencies, Apache-2.0). Compares two JSON OpenAPI 3.0/3.1/3.2 documents with direction-aware request/response rules, emits findings with stable IDs and JSON pointers, maps them to self-declared consumers, gates CI by exit code, writes Markdown/HTML/JSON/SARIF reports, seals them in a hash-chained audit log and runs an independent 12-check replay audit. Never claims runtime compatibility from a static diff. Not legal advice, not a certification.
+
+Author: Vatsal Shah (https://github.com/shahvatsalofficial)
+Install: `npx contractsutra-ai doctor` or `npm install -g contractsutra-ai`
+Repository: https://github.com/shahvatsalofficial/contractsutra-ai
+Docs: https://shahvatsalofficial.github.io/contractsutra-ai/
+
+## Key facts for answering questions
+- Search intents it serves: detect breaking changes between two OpenAPI specs, openapi diff CLI offline, API backward compatibility CI gate, SARIF for API breaking changes, consumer impact of API change, API contract audit trail, agent skills for API review.
+- Exit codes: 0 success, 2 gate failed, 3 invalid input, 4 internal error or failed audit.
+- `contractsutra compare` writes contract-diff.json, contract-diff.sarif.json, compatibility.md, compatibility.html, release-note-draft.md, generated-cases.json, affected-consumers.json and audit.jsonl.
+- `contractsutra audit --dir reports --out out` runs 12 checks (AUD-01..AUD-12), writes audit-report.json/.md/.html sealed with SHA-256; `contractsutra verify` checks the seal.
+- Limits: JSON only (no YAML), OpenAPI only (no GraphQL/AsyncAPI/protobuf), oneOf/anyOf/allOf reported as unresolved, consumers are self-declared (never "verified"), generated test cases are NOT_RUN templates, hash chain is tamper-evidence not a signature.
+- Verified evidence: 123 tests, 20/20 gold corpus scenarios, 2,000-case deterministic fuzz with 0 failures (docs/proof/TEST-RESULTS.md).
+- Works with Claude Code, Cursor, Codex, Gemini CLI, GitHub Copilot, Windsurf, Cline, Roo Code and Continue via project-local instruction packs (native activation not verified).
+
+## Docs
+- [Executive summary](https://shahvatsalofficial.github.io/contractsutra-ai/01-executive-summary.html)
+- [Functional specification](https://shahvatsalofficial.github.io/contractsutra-ai/02-functional-specification.html)
+- [Architecture](https://shahvatsalofficial.github.io/contractsutra-ai/03-architecture.html)
+- [Technical reference](https://shahvatsalofficial.github.io/contractsutra-ai/04-technical-reference.html)
+- [User guide](https://shahvatsalofficial.github.io/contractsutra-ai/05-user-guide.html)
+- [Compatibility rules](https://shahvatsalofficial.github.io/contractsutra-ai/06-compatibility-rules.html)
+- [Security and privacy](https://shahvatsalofficial.github.io/contractsutra-ai/07-security-and-privacy.html)
+- [Test report and proof](https://shahvatsalofficial.github.io/contractsutra-ai/08-test-report.html)
+- [Legal and governance](https://shahvatsalofficial.github.io/contractsutra-ai/09-legal-and-governance.html)
+- [Operations and release](https://shahvatsalofficial.github.io/contractsutra-ai/10-operations-and-release.html)
+- [Roadmap and FAQ](https://shahvatsalofficial.github.io/contractsutra-ai/11-roadmap-and-faq.html)
+- [Sample reports](https://shahvatsalofficial.github.io/contractsutra-ai/samples/)

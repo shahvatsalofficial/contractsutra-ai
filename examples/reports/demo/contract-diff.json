@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "1.0.0",
+  "engine": "contractsutra-offline-openapi-json-subset-v0.1",
+  "beforeHash": "0c5d70b0865a224f589ca27951bf32d3f7b0cfdded0b644cbd1495b3e5ce2bb6",
+  "afterHash": "539d74151a038ae6170cf6e11d7e4dd137a0e2bf6002c1f24a0f0acd7c8c8e01",
+  "findings": [
+    {
+      "id": "CS-5D4DFCCBC0E1",
+      "kind": "breaking",
+      "code": "FIELD_ADDED",
+      "pointer": "#/paths/~1invitations/post/requestBody/content/application~1json/schema/properties/organizationId",
+      "description": "Schema field added: organizationId (required)",
+      "direction": "request",
+      "newRequired": true,
+      "evidence": "static-contract-diff",
+      "verification": "OBSERVED_IN_SPEC",
+      "consumerImpact": "DECLARED_CONSUMERS_MATCHED_UNVERIFIED",
+      "operation": "POST /invitations",
+      "affectedConsumers": [
+        "admin-console"
+      ]
+    },
+    {
+      "id": "CS-CF9D95D774DE",
+      "kind": "info",
+      "code": "FIELD_ADDED",
+      "pointer": "#/paths/~1invitations/post/requestBody/content/application~1json/schema/properties/source",
+      "description": "Schema field added: source (optional)",
+      "direction": "request",
+      "newRequired": false,
+      "evidence": "static-contract-diff",
+      "verification": "OBSERVED_IN_SPEC",
+      "consumerImpact": "DECLARED_CONSUMERS_MATCHED_UNVERIFIED",
+      "operation": "POST /invitations",
+      "affectedConsumers": [
+        "admin-console"
+      ]
+    },
+    {
+      "id": "CS-64C332DBE59C",
+      "kind": "breaking",
+      "code": "FIELD_REMOVED",
+      "pointer": "#/paths/~1invitations/post/responses/201/content/application~1json/schema/properties/role",
+      "description": "Schema field removed: role",
+      "direction": "response",
+      "oldRequired": true,
+      "evidence": "static-contract-diff",
+      "verification": "OBSERVED_IN_SPEC",
+      "consumerImpact": "DECLARED_CONSUMERS_MATCHED_UNVERIFIED",
+      "operation": "POST /invitations",
+      "affectedConsumers": [
+        "admin-console"
+      ]
+    },
+    {
+      "id": "CS-9E1FDE917AF2",
+      "kind": "additive",
+      "code": "FIELD_ADDED",
+      "pointer": "#/paths/~1invitations/post/responses/201/content/application~1json/schema/properties/roleName",
+      "description": "Schema field added: roleName (required)",
+      "direction": "response",
+      "newRequired": true,
+      "evidence": "static-contract-diff",
+      "verification": "OBSERVED_IN_SPEC",
+      "consumerImpact": "DECLARED_CONSUMERS_MATCHED_UNVERIFIED",
+      "operation": "POST /invitations",
+      "affectedConsumers": [
+        "admin-console"
+      ]
+    },
+    {
+      "id": "CS-888AFB689BE7",
+      "kind": "additive",
+      "code": "FIELD_ADDED",
+      "pointer": "#/paths/~1invitations/post/responses/201/content/application~1json/schema/properties/source",
+      "description": "Schema field added: source (optional)",
+      "direction": "response",
+      "newRequired": false,
+      "evidence": "static-contract-diff",
+      "verification": "OBSERVED_IN_SPEC",
+      "consumerImpact": "DECLARED_CONSUMERS_MATCHED_UNVERIFIED",
+      "operation": "POST /invitations",
+      "affectedConsumers": [
+        "admin-console"
+      ]
+    }
+  ],
+  "counts": {
+    "breaking": 2,
+    "risky": 0,
+    "additive": 2,
+    "info": 1
+  },
+  "unknown": [],
+  "disclaimer": "Static specification comparison; NOT proof of actual consumer or runtime compatibility. Unresolved semantics require review.",
+  "consumerManifest": {
+    "sourceHash": "c43d8fbe4a136f8dce20f570e79713af8c9482f2aea2675237564509092211cf",
+    "entries": 2,
+    "confidence": "USER_DECLARED_UNVERIFIED"
+  }
+}

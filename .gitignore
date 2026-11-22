@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.*
+!.env.example
+coverage/
+/reports/
+/audit-out/
+/ci-reports/
+*.tgz
+.DS_Store
+*.log

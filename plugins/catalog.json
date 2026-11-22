@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Spectral",
+    "category": "API lint",
+    "status": "PLANNED",
+    "scope": "Lint adapter, pinned ruleset, offline rules"
+  },
+  {
+    "name": "Pact Broker",
+    "category": "Consumer-driven verification",
+    "status": "NOT_CONNECTED",
+    "scope": "Read-only can-i-deploy evidence, explicit environment/version mapping"
+  },
+  {
+    "name": "Schemathesis",
+    "category": "Property-based API tests",
+    "status": "NOT_CONNECTED",
+    "scope": "Mock or approved test endpoint only; no default fuzzing"
+  },
+  {
+    "name": "Buf",
+    "category": "Protobuf compatibility",
+    "status": "NOT_CONNECTED",
+    "scope": "Descriptor-aware breaking check from pinned toolchain"
+  },
+  {
+    "name": "GraphQL Inspector",
+    "category": "GraphQL schema changes",
+    "status": "NOT_CONNECTED",
+    "scope": "SDL schema diff and usage-aware impact"
+  },
+  {
+    "name": "AsyncAPI Parser",
+    "category": "Event schemas",
+    "status": "NOT_CONNECTED",
+    "scope": "Versioned 3.1 message/channel semantics"
+  },
+  {
+    "name": "OpenAPI diff libraries",
+    "category": "Supplemental diff",
+    "status": "EVALUATE",
+    "scope": "Feature parity and license assessment"
+  },
+  {
+    "name": "GitHub Actions",
+    "category": "CI report publishing",
+    "status": "TEMPLATE_ONLY",
+    "scope": "Three-OS workflow packaged; not run on GitHub"
+  },
+  {
+    "name": "GitLab CI",
+    "category": "CI integration",
+    "status": "PLANNED",
+    "scope": "CI adapter after evidence-based test"
+  },
+  {
+    "name": "Jira",
+    "category": "Ticket context",
+    "status": "NOT_CONNECTED",
+    "scope": "Read-only scoped issue link"
+  },
+  {
+    "name": "ClickUp",
+    "category": "Work management",
+    "status": "NOT_CONNECTED",
+    "scope": "Read-only scoped task link"
+  },
+  {
+    "name": "OpenTelemetry",
+    "category": "Telemetry",
+    "status": "PLANNED",
+    "scope": "Opt-in privacy-preserving instrumentation"
+  },
+  {
+    "name": "MCP stdio",
+    "category": "Read-only local MCP",
+    "status": "EXPERIMENTAL_LOCAL",
+    "scope": "Two locally testable tools; legacy 2025-11-25; host unverified"
+  },
+  {
+    "name": "HTTP report server",
+    "category": "Read-only loopback HTTP",
+    "status": "IMPLEMENTED_LOCAL",
+    "scope": "Token-gated loopback GET-only; not production SSO"
+  },
+  {
+    "name": "Local CLI",
+    "category": "Deterministic offline core",
+    "status": "IMPLEMENTED_LOCAL",
+    "scope": "Local JSON OpenAPI 3.x limited parser and semantic diff"
+  }
+]

@@ -1,0 +1,133 @@
+{
+  "cases": 20,
+  "passed": 20,
+  "truePositive": 18,
+  "falsePositive": 0,
+  "falseNegative": 0,
+  "trueNegative": 2,
+  "precision": 1,
+  "recall": 1,
+  "note": "Author-labelled synthetic corpus: it measures agreement with the author's own rules, not accuracy on real-world APIs.",
+  "rows": [
+    {
+      "case": "remove operation",
+      "expected": "OPERATION_REMOVED / breaking",
+      "observed": "OPERATION_REMOVED/breaking",
+      "pass": true
+    },
+    {
+      "case": "add operation",
+      "expected": "OPERATION_ADDED / additive",
+      "observed": "OPERATION_ADDED/additive",
+      "pass": true
+    },
+    {
+      "case": "add required query param",
+      "expected": "PARAMETER_ADDED / breaking",
+      "observed": "PARAMETER_ADDED/breaking",
+      "pass": true
+    },
+    {
+      "case": "add optional query param",
+      "expected": "PARAMETER_ADDED / additive",
+      "observed": "PARAMETER_ADDED/additive",
+      "pass": true
+    },
+    {
+      "case": "request field becomes required",
+      "expected": "FIELD_REQUIRED_CHANGED / breaking",
+      "observed": "FIELD_REQUIRED_CHANGED/breaking",
+      "pass": true
+    },
+    {
+      "case": "response field removed",
+      "expected": "FIELD_REMOVED / breaking",
+      "observed": "FIELD_REMOVED/breaking",
+      "pass": true
+    },
+    {
+      "case": "response optional field added",
+      "expected": "FIELD_ADDED / additive",
+      "observed": "FIELD_ADDED/additive",
+      "pass": true
+    },
+    {
+      "case": "request optional field added",
+      "expected": "FIELD_ADDED / info",
+      "observed": "FIELD_ADDED/info",
+      "pass": true
+    },
+    {
+      "case": "request required field added",
+      "expected": "FIELD_ADDED / breaking",
+      "observed": "FIELD_ADDED/breaking",
+      "pass": true
+    },
+    {
+      "case": "response type changed",
+      "expected": "TYPE_CHANGED / breaking",
+      "observed": "TYPE_CHANGED/breaking",
+      "pass": true
+    },
+    {
+      "case": "response status removed",
+      "expected": "RESPONSE_STATUS_REMOVED / breaking",
+      "observed": "RESPONSE_STATUS_REMOVED/breaking",
+      "pass": true
+    },
+    {
+      "case": "response status added",
+      "expected": "RESPONSE_STATUS_ADDED / additive",
+      "observed": "RESPONSE_STATUS_ADDED/additive",
+      "pass": true
+    },
+    {
+      "case": "request media type removed",
+      "expected": "MEDIA_REMOVED / breaking",
+      "observed": "MEDIA_REMOVED/breaking, MEDIA_ADDED/additive",
+      "pass": true
+    },
+    {
+      "case": "request maxLength tightened",
+      "expected": "CONSTRAINT_TIGHTENED / breaking",
+      "observed": "CONSTRAINT_TIGHTENED/breaking",
+      "pass": true
+    },
+    {
+      "case": "response enum expanded",
+      "expected": "FIELD_ADDED / additive",
+      "observed": "FIELD_ADDED/additive",
+      "pass": true
+    },
+    {
+      "case": "composition introduced (unknown)",
+      "expected": "UNRESOLVED_SEMANTICS / risky",
+      "observed": "SCHEMA_UNKNOWN/risky, UNRESOLVED_SEMANTICS/risky",
+      "pass": true
+    },
+    {
+      "case": "external $ref (unknown)",
+      "expected": "UNRESOLVED_SEMANTICS / risky",
+      "observed": "SCHEMA_UNKNOWN/risky, UNRESOLVED_SEMANTICS/risky",
+      "pass": true
+    },
+    {
+      "case": "request body becomes required",
+      "expected": "REQUEST_BODY_NOW_REQUIRED / breaking",
+      "observed": "REQUEST_BODY_NOW_REQUIRED/breaking",
+      "pass": true
+    },
+    {
+      "case": "description-only change",
+      "expected": "no findings",
+      "observed": "none",
+      "pass": true
+    },
+    {
+      "case": "no change",
+      "expected": "no findings",
+      "observed": "none",
+      "pass": true
+    }
+  ]
+}

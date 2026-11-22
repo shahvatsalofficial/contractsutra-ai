@@ -1,0 +1,9 @@
+{
+  "cases": 2000,
+  "seed": "0xC0FFEE (LCG)",
+  "unhandledExceptions": 0,
+  "nondeterministicDiffs": 0,
+  "renderFailures": 0,
+  "selfDiffUnexpectedFindings": 0,
+  "crashSamples": []
+}
