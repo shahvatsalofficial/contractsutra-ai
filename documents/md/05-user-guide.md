@@ -32,7 +32,7 @@ Share `audit-report.html` or `.md` with reviewers. `FAIL` means a file was alter
 ```yaml
 - run: npx contractsutra-ai compare --before base/openapi.json --after openapi.json --out reports --fail-on breaking
 - run: npx contractsutra-ai audit --dir reports --out reports/audit
-- uses: github/codeql-action/upload-sarif@v3
+- uses: github/codeql-action/upload-sarif@v4
   with: { sarif_file: reports/contract-diff.sarif.json }
 ```
 

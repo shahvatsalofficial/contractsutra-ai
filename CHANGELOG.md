@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 — 2026-11-23
+- Docs and examples updated to current GitHub Actions majors (codeql-action v4); reports and site regenerated at 0.2.1.
+- First release published through npm trusted publishing (OIDC) with provenance.
+
 ## 0.2.0 — 2026-11-23
 - **Independent audit report**: `contractsutra audit --dir <reports> --out <dir>` replays 12 checks (AUD-01..AUD-12) and writes `audit-report.json`, `.md` and `.html`, sealed with SHA-256. `contractsutra verify` checks the seal.
 - Reports rebuilt: verdict banner, severity cards, grouped findings, input hashes, dark mode, WCAG-minded colors; new SARIF 2.1.0 output (`contract-diff.sarif.json`).

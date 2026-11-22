@@ -1,6 +1,6 @@
 import {escapeHtml,atomicWrite,assertSafeReportDir,sha} from './utils.mjs';
 import path from 'node:path';
-export const VERSION='0.2.0';
+export const VERSION='0.2.1';
 const ORDER=['breaking','risky','additive','info'];
 const LABEL={breaking:'Breaking',risky:'Needs review',additive:'Additive',info:'Informational'};
 const md=s=>String(s??'').replace(/[\r\n]+/g,' ').replace(/\|/g,'\\|');

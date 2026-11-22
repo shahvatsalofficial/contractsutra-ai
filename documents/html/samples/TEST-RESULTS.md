@@ -1,6 +1,6 @@
 # ContractSutra AI — Test results and proof
 
-Generated 2026-11-22T19:08:21.946Z · v0.2.0 · Node v24.15.0 · win32 x64
+Generated 2026-11-22T19:26:07.368Z · v0.2.1 · Node v24.15.0 · win32 x64
 
 ## Test suite
 
@@ -48,9 +48,9 @@ Precision 1.000 · Recall 1.000 · FP 0 · FN 0
 
 | Operations | Spec bytes | Findings | ms |
 | ---: | ---: | ---: | ---: |
-| 100 | 25654 | 1 | 7 |
-| 500 | 128454 | 1 | 38 |
-| 1000 | 256954 | 1 | 87 |
+| 100 | 25654 | 1 | 5 |
+| 500 | 128454 | 1 | 32 |
+| 1000 | 256954 | 1 | 86 |
 
 ## Not proven
 

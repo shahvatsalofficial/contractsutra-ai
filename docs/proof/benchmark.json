@@ -7,19 +7,19 @@
       "operations": 100,
       "specBytes": 25654,
       "findings": 1,
-      "ms": 7
+      "ms": 5
     },
     {
       "operations": 500,
       "specBytes": 128454,
       "findings": 1,
-      "ms": 38
+      "ms": 32
     },
     {
       "operations": 1000,
       "specBytes": 256954,
       "findings": 1,
-      "ms": 87
+      "ms": 86
     }
   ]
 }

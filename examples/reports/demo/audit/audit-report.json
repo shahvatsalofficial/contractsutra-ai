@@ -1,6 +1,6 @@
 {
   "schema": "contractsutra.audit-report/1",
-  "tool": "contractsutra-ai@0.2.0",
+  "tool": "contractsutra-ai@0.2.1",
   "directory": "demo",
   "checks": [
     {
@@ -19,7 +19,7 @@
       "id": "AUD-03",
       "title": "Audit hash chain intact",
       "status": "PASS",
-      "detail": "2 event(s), head 1ed3e7988f39"
+      "detail": "1 event(s), head 13ad0a4a5fa9"
     },
     {
       "id": "AUD-04",
@@ -92,5 +92,5 @@
     "Unsupported OpenAPI constructs are reported as UNRESOLVED_SEMANTICS, not as compatible.",
     "This audit is automated self-verification, not an independent human audit or certification."
   ],
-  "seal": "6f37599111775fe2b0388d84998ec8fdf826fd0f9a5d310a2af08478b1c4eeba"
+  "seal": "a11415fa380e1951ee65292f280c0a1a19d88aa5b5035ef6d94d015b01c936a4"
 }

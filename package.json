@@ -1,6 +1,6 @@
 {
   "name": "contractsutra-ai",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "type": "module",
   "description": "ContractSutra AI: local-first OpenAPI breaking-change detector. Direction-aware request/response rules, JSON-pointer findings, declared consumer impact, SARIF, CI exit-code gate, hash-chained audit log and independent audit reports in Markdown, HTML and JSON. 22 agent roles, 29 portable skills. Zero dependencies, no API keys.",

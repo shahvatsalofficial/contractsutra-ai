@@ -2,13 +2,13 @@
 
 **Verdict: PASS** · 12/12 checks passed · assurance level `LOCAL_STARTER_VERIFIED`
 
-Seal (SHA-256 of body): `6f37599111775fe2b0388d84998ec8fdf826fd0f9a5d310a2af08478b1c4eeba`
+Seal (SHA-256 of body): `a11415fa380e1951ee65292f280c0a1a19d88aa5b5035ef6d94d015b01c936a4`
 
 | Check | Result | Title | Detail |
 | --- | --- | --- | --- |
 | AUD-01 | PASS | All report files present | 7 report files and audit.jsonl found |
 | AUD-02 | PASS | contract-diff.json parses | Parsed |
-| AUD-03 | PASS | Audit hash chain intact | 2 event(s), head 1ed3e7988f39 |
+| AUD-03 | PASS | Audit hash chain intact | 1 event(s), head 13ad0a4a5fa9 |
 | AUD-04 | PASS | Report bytes match hashes sealed in the audit log | 7 files verified |
 | AUD-05 | PASS | Input spec hashes match audit event | before 0c5d70b0865a after 539d74151a03 |
 | AUD-06 | PASS | Severity counts recompute | {"breaking":2,"risky":0,"additive":2,"info":1} |
