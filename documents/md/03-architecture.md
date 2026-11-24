@@ -1,5 +1,7 @@
 # Architecture
 
+@@diagram:pipeline@@
+
 ```text
  before.json --+                                     +--> contract-diff.json / .sarif.json
  after.json  --+--> load --> normalize --> compare --+--> compatibility.md / .html
@@ -12,6 +14,8 @@
 ```
 
 ## Modules (`src/`)
+
+@@html:layers@@
 | Module | Responsibility |
 | --- | --- |
 | `core/utils.mjs` | SHA-256, JSON-pointer escaping, HTML escaping, bounded file reads, atomic writes |

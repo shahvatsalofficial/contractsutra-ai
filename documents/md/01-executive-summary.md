@@ -13,6 +13,8 @@ APIs break clients quietly: a response field disappears, a request field becomes
 - Runs an **independent replay audit** (12 checks) that recomputes counts, IDs and hashes and fails if any report was edited after generation.
 
 ## Why you can trust it
+
+@@bars:proof@@
 | Evidence | Result |
 | --- | --- |
 | Automated tests | **{{PASS}} of {{TESTS}} passed**, {{FAIL}} failed |

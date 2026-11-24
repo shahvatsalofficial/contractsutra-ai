@@ -3,6 +3,8 @@
 Recorded {{DATE}} on Node {{NODE}}, {{PLATFORM}}. Regenerate with `npm run proof`. Raw files are in [`docs/proof`](https://github.com/shahvatsalofficial/contractsutra-ai/tree/main/docs/proof) and the [samples](samples/) folder.
 
 ## Summary
+
+@@bars:proof@@
 | Measure | Result |
 | --- | --- |
 | Automated tests | **{{PASS}} / {{TESTS}}** passed, {{FAIL}} failed, {{SKIPPED}} skipped |

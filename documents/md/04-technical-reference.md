@@ -49,6 +49,8 @@ Options are strict: unknown or duplicate options and missing values exit `3`.
 `audit-report.json` carries `seal = SHA-256(JSON of the body)`. `verify` recomputes it.
 
 ## Audit log format (`audit.jsonl`)
+
+@@diagram:chain@@
 One JSON object per line: `{v, type, at, prevHash, metadata, hash}` where `hash = SHA-256(JSON of the event without hash)` and the first `prevHash` is `GENESIS`. `compare` events record `reportHashes` for every generated file.
 
 ## HTTP API (loopback only)

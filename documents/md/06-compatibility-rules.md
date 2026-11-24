@@ -2,6 +2,12 @@
 
 Guiding principle: a provider must keep accepting old valid **requests** and keep satisfying old promised **responses**.
 
+@@html:direction@@
+
+How a single change is classified:
+
+@@diagram:decision@@
+
 | Change | In a request | In a response |
 | --- | --- | --- |
 | Operation removed | breaking | breaking |
