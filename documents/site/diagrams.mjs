@@ -102,6 +102,12 @@ export function direction() {
     + `<div class="dirc"><span class="arrow">Provider &rarr; Client</span><h4>Response</h4><p>The provider must keep delivering what old clients rely on.</p><ul><li><span class="tag bad">BREAKING</span>Field removed</li><li><span class="tag bad">BREAKING</span>Type changed, or null now possible</li><li><span class="tag bad">BREAKING</span>Status code or media type removed</li><li><span class="tag warn">REVIEW</span>Enum value added, guarantee relaxed</li><li><span class="tag ok">SAFE</span>New optional field</li></ul></div></div>`;
 }
 
+/** Brand mark: two opposing arrows (request out, response back) on a rounded gradient tile. */
+const LOGO_PATHS = '<path d="M8 12.5h13M17.5 8.5l4 4-4 4"/><path d="M24 21.5H11M14.5 17.5l-4 4 4 4"/>';
+const TILE = id => `<defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d5fd8"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#${id})"/><g fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${LOGO_PATHS}</g>`;
+export const logo = (size = 30) => `<svg class="logo" width="${size}" height="${size}" viewBox="0 0 32 32" aria-hidden="true">${TILE('lg' + (++uid))}</svg>`;
+export const FAVICON = 'data:image/svg+xml,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">${TILE('g')}</svg>`);
+
 /** Terminal mock-up (always dark). lines starting with $ are commands. */
 export function terminal(lines, title = 'terminal') {
   const body = lines.map(l => {
